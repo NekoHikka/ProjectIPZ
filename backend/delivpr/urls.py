@@ -7,10 +7,9 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name='home'),
-    
-
     path('users/', include('users.urls')),  
     path('restaurants/', include('restaurants.urls')),  
+    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:
