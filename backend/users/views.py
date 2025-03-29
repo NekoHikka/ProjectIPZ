@@ -3,8 +3,8 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import UserRegisterForm
 from django.contrib import messages
 
-def home(request):
-    return render(request, "home.html")  
+
+
 
 def loginUser(request):
     if request.method == 'POST':
@@ -16,7 +16,7 @@ def loginUser(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'You have successfully logged in.')
-            return redirect('home')  
+            return redirect('main')  
         else:
             messages.error(request, 'Invalid username or password.')
 
@@ -25,7 +25,7 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     messages.info(request, 'User was logged out!')
-    return redirect('home') 
+    return redirect('main') 
 
 def registerUser(request):
     if request.method == 'POST':

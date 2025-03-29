@@ -1,0 +1,43 @@
+/* Контейнер для вендоров */
+.vendor-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Равномерное распределение */
+    gap: 15px; /* Уменьшаем расстояние */
+    margin-top: 20px;
+}
+
+/* Стиль для каждого вендора */
+.vendor-item {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 12px; /* Чуть меньше отступы */
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: calc(22% - 15px); /* Чуть меньше ширина, чтобы было компактнее */
+    box-sizing: border-box;
+    height: 300px; /* Чуть меньше высота */
+}
+
+/* Стиль для изображений */
+.vendor-item img {
+    width: 120px; /* Уменьшаем размер изображений */
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Заголовки */
+.vendor-item h2 {
+    font-size: 1.3em; /* Немного меньше */
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Описание */
+.vendor-item p {
+    font-size: 0.9em; /* Немного уменьшено */
+    color: #555;
+    margin-bottom: 8px;
+}

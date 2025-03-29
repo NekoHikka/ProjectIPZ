@@ -1,0 +1,31 @@
+img {
+    max-width: 200px;  /* Уменьшаем размер изображений */
+    height: auto;
+    border-radius: 10px; /* Скругляем углы */
+    display: block;
+    margin: 10px 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+h2, h3, h4 {
+    margin-bottom: 5px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <h1>Добро пожаловать!</h1>
+
+    {% if user.is_authenticated %}
+        <h2>Привет, {{ user.username }}!</h2>
+    {% else %}
+       
+    {% endif %}
+    
+    <h1>Restaurants</h1>
+
+    <!-- Контейнер для всех вендоров -->
+    <div class="vendor-container">
+        {% for vendor in vendors %}
+            <div class="vendor-item">
+                {% if vendor.logo %}
+                    <img src="{{ vendor.logo.url }}" alt="{{ vendor.name }} logo">
+                {% else %}
+                    <img src="{% static 'images/default.jpg' %}" alt="Default Logo">
+                {% endif %}
+                <h2>{{ vendor.name }}</h2>
+                <p>{{ vendor.description }}</p>
+            </div>
+        {% empty %}
+            <p>No vendors found.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
+{% endblock %}
