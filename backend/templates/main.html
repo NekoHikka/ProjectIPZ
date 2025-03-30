@@ -12,17 +12,16 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    <h1>Добро пожаловать!</h1>
+    <h1>Welcome</h1>
 
     {% if user.is_authenticated %}
-        <h2>Привет, {{ user.username }}!</h2>
+        <h2>Hello, {{ user.username }}!</h2>
     {% else %}
        
     {% endif %}
     
     <h1>Restaurants</h1>
 
-    <!-- Контейнер для всех вендоров -->
     <div class="vendor-container">
         {% for vendor in vendors %}
             <div class="vendor-item">

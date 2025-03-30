@@ -3,9 +3,6 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import UserRegisterForm
 from django.contrib import messages
 
-
-
-
 def loginUser(request):
     if request.method == 'POST':
         username = request.POST.get('username').lower()

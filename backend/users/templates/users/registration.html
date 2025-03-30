@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Регистрация{% endblock %}
+{% block title %}Registration{% endblock %}
 
 {% block content %}
-  <h2>Регистрация</h2>
+  <h2>Registration</h2>
 
-  <!-- Отображение сообщений об ошибке или успехе -->
   {% if messages %}
     <div class="messages">
       {% for message in messages %}
@@ -18,13 +17,12 @@
 
   <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}  <!-- Это автоматически отобразит все поля и обработает их валидацию -->
-
-    <button type="submit">Зарегистрироваться</button>
+    {{ form.as_p }}  
+    <button type="submit">log in</button>
   </form>
 
   <div>
-    <p>Уже есть аккаунт?</p>
-    <a href="{% url 'login' %}">Войти</a>
+    <p>Aldready registered?</p>
+    <a href="{% url 'login' %}">sign in</a>
   </div>
 {% endblock %}
