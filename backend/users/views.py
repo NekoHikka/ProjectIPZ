@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, ProfileForm
 from django.contrib import messages
+
 
 def loginUser(request):
     if request.method == 'POST':
@@ -41,3 +42,14 @@ def registerUser(request):
 
     return render(request, 'users/registration.html', {'form': form})
 
+def editProfile(request):
+    profile = request.user.profile  # Отримуємо профіль поточного юзера
+    form = ProfileForm(instance=profile)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('main')  # Перенаправлення на сторінку профілю
+
+    return render(request, 'users/profile_form.html', {'form': form})
