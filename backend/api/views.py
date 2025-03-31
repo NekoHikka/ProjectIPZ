@@ -3,6 +3,10 @@ from rest_framework.response import Response
 from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer
 from restaurants.models import Vendor, MenuItem, Menu
 
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
+
+
 @api_view(['GET'])
 def getRouts(request):
 
@@ -36,7 +40,12 @@ def getVendor(request,pk):
 
 @api_view(['GET'])
 def getMenus(request): 
-    menus = Menu.objects.all()
+    vendor_id = request.GET.get('vendor_id')
+    if vendor_id:
+        menus = Menu.objects.filter(vendor_id=vendor_id)
+    else:
+        menus = Menu.objects.all()
+
     serializer = MenuSerializer(menus, many=True)
     return Response(serializer.data)
 
@@ -48,7 +57,12 @@ def getMenu(request,pk):
 
 @api_view(['GET'])
 def getMenuItems(request): 
-    menuItems = MenuItem.objects.all()
+    menu_id = request.GET.get('menu_id')
+    if menu_id:
+        menuItems = MenuItem.objects.filter(menu_id=menu_id)
+    else:
+        menuItems = MenuItem.objects.all()
+
     serializer = MenuItemSerializer(menuItems, many=True)
     return Response(serializer.data)
 
@@ -57,3 +71,5 @@ def getMenuItem(request,pk):
     menuItem = MenuItem.objects.get(id=pk)
     serializer = MenuItemSerializer(menuItem, many=False)
     return Response(serializer.data)
+
+
