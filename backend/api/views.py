@@ -1,10 +1,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer
+from rest_framework.permissions import IsAuthenticated
+from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer, ProfileSerializer
 from restaurants.models import Vendor, MenuItem, Menu
-
-from rest_framework import generics
-from rest_framework.permissions import AllowAny
+from users.models import Profile
 
 
 @api_view(['GET'])
@@ -19,13 +18,30 @@ def getRouts(request):
 
         {'GET':'/api/menus'},
         {'GET':'/api/menus/id'},
+        {'GET': '/api/menus?vendor_id=<vendor_id>'},
 
         {'GET':'/api/menuItems'},
         {'GET':'/api/menuItems/id'},
+        {'GET': '/api/menuItems?menu_id=<menu_id>'},
+
     ]
 
     return Response(routes)
+@api_view(['GET', 'PUT'])
+def profile_detail(request):
+    profile = request.user.profile  # Отримуємо профіль авторизованого користувача
 
+    if request.method == 'GET':
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = ProfileSerializer(profile, data=request.data, partial=True)  
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+    
 @api_view(['GET'])
 def getVendors(request): 
     vendors = Vendor.objects.all()
