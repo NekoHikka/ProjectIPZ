@@ -137,7 +137,7 @@ USE_TZ = True
 
 # Для статичних файлів
 STATIC_URL = 'static/'
-MEDIA_URL = '/images/'
+MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]

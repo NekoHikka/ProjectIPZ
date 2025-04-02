@@ -24,12 +24,14 @@ def getRouts(request):
         {'GET':'/api/menuItems/id'},
         {'GET': '/api/menuItems?menu_id=<menu_id>'},
 
+        {'GET': '/api/profile'},  
+        {'PUT': '/api/profile'},  
     ]
 
     return Response(routes)
 @api_view(['GET', 'PUT'])
 def profile_detail(request):
-    profile = request.user.profile  # Отримуємо профіль авторизованого користувача
+    profile = request.user.profile  
 
     if request.method == 'GET':
         serializer = ProfileSerializer(profile)
