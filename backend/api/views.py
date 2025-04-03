@@ -1,6 +1,6 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer, ProfileSerializer
 from restaurants.models import Vendor, MenuItem, Menu
 from users.models import Profile
@@ -29,7 +29,9 @@ def getRouts(request):
     ]
 
     return Response(routes)
+
 @api_view(['GET', 'PUT'])
+@permission_classes([IsAuthenticated])
 def profile_detail(request):
     profile = request.user.profile  
 
