@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import UserRegisterForm, ProfileForm
 from django.contrib import messages
-
+from api.serializers import ProfileSerializer 
 
 def loginUser(request):
     if request.method == 'POST':
@@ -50,6 +50,10 @@ def editProfile(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
+
+            serializer = ProfileSerializer(profile)
+            serializer.save_to_json() 
+
             return redirect('main')  
 
     return render(request, 'users/profile_form.html', {'form': form})
