@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer, ProfileSerializer
 from restaurants.models import Vendor, MenuItem, Menu
 from users.models import Profile
-
+from rest_framework import status
 
 @api_view(['GET'])
 def getRouts(request):
@@ -88,9 +88,13 @@ def getMenuItems(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def getMenuItem(request,pk): 
-    menuItem = MenuItem.objects.get(id=pk)
-    serializer = MenuItemSerializer(menuItem, many=False)
+def getMenuItem(request, pk): 
+    try:
+        menu_item = MenuItem.objects.get(id=pk)
+    except MenuItem.DoesNotExist:
+        return Response({"error": "MenuItem not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = MenuItemSerializer(menu_item, many=False)
     return Response(serializer.data)
 
 
