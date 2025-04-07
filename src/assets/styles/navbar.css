@@ -1,0 +1,25 @@
+nav {
+  width: 340px;
+}
+
+.navbar {
+  padding-left: 43px;
+}
+.navlink a {
+  text-decoration: none;
+  color: var(--navlinks-color);
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.navlink {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.navlink-icon {
+  fill: var(--orange-color);
+}

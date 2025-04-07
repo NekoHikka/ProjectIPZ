@@ -1,0 +1,196 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.container {
+  width: 375px;
+}
+
+.login-form .container {
+  padding-left: 20px;
+  padding-top: 28px;
+  padding-right: 20px;
+}
+
+.login-form .container h1 {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.login-form .container h2 {
+  color: var(--grey-h2);
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.login-form .container label {
+  display: block;
+  font-family: var(--Inter);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--dark-grey-color);
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+.login-form .container input {
+  width: 334px;
+  height: 43px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--light-color-input);
+  color: var(--light-color-text-input);
+  font-family: var(--Inter);
+  font-weight: 400;
+  font-size: 16px;
+  padding-left: 44px;
+  background-repeat: no-repeat;
+  background-position: 16px center;
+}
+
+.email {
+  background-image: url(../images/input/Mail.png);
+}
+
+.password {
+  background-image: url(../images/input/Lock.png);
+}
+
+.password-wrapper {
+  position: relative;
+}
+.hideEye {
+  position: absolute;
+  top: 39px;
+  left: 300px;
+}
+
+.login-form .container .link {
+  margin-top: 5px;
+  color: var(--orange-color);
+  text-decoration: none;
+  font-family: var(--Inter);
+  font-weight: 400;
+  font-size: 14px;
+  text-align: right;
+  display: block;
+}
+
+.primary-button {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  width: 335px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--orange-color);
+  height: 44px;
+  color: var(--white-color);
+  font-family: var(--Inter);
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.or-login-p {
+  margin-bottom: 50px;
+  font-family: var(--Inter);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.redirect {
+  font-family: var(--Inter);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  gap: 5px;
+  margin-left: 90px;
+}
+
+.redirect-r {
+  margin-left: 130px;
+}
+
+.redirect-link {
+  color: var(--orange-color);
+  text-decoration: none;
+}
+
+.register-form .container {
+  width: 482px;
+  padding-top: 24px;
+  padding-left: 28px;
+}
+
+.register-form .container h1 {
+  font-family: var(--Poppins);
+  text-align: center;
+  font-weight: 400;
+  font-size: 32px;
+  margin-bottom: 36px;
+}
+.register-form .container input {
+  width: 482px;
+}
+
+.register-form .container label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.register-form input {
+  border: none;
+  background-color: var(--light-color-input);
+  color: var(--grey-color);
+  border-radius: 6px;
+  padding-left: 12px;
+  height: 35px;
+  margin-bottom: 20px;
+}
+
+.register-form .container .name-surname input {
+  width: 230px;
+  height: 35px;
+  margin-bottom: 20px;
+}
+
+.name-surname {
+  display: flex;
+  gap: 16px;
+}
+
+.register-form label {
+  font-family: var(--Inter);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--dark-grey-color);
+}
+
+.or-register-p {
+  font-family: var(--Inter);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--grey-secondary);
+}
+
+.hideEyeR {
+  position: absolute;
+  top: 28px;
+  left: 455px;
+}
+
+.submitRegister {
+  width: 482px;
+}

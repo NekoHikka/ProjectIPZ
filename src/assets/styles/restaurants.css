@@ -1,0 +1,21 @@
+.restaurants {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 25px;
+}
+.restaurants .restaurant img {
+  width: 270px;
+  height: 250px;
+}
+.restaurant {
+  width: 336px;
+  height: 363px;
+  background-color: var(--white-color);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

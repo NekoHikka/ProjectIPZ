@@ -1,0 +1,33 @@
+.error-button {
+  width: 400px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.error-status {
+  font-weight: 700;
+  font-size: 108px;
+  text-align: center;
+}
+
+.error-text {
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+}
+
+.link-error {
+  color: var(--white-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 30px;
+}
+
+.error {
+  text-align: center;
+}
