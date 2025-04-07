@@ -1,37 +1,16 @@
-import { useEffect, useState } from "react";
-import { customFetch } from "../utils/index.js";
+import { useRestaurants } from "../viewmodels/useRestaurants";
 
 const Restorants = () => {
-  const [restaurants, setRestaurants] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await customFetch.get("/restaurants");
-        console.log("Відповідь від API:", response.data);
-        setRestaurants(response.data);
-      } catch (error) {
-        console.error("Помилка запиту:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { restaurants } = useRestaurants();
 
   return (
-    <div>
-      <div className="restaurants">
-        {restaurants.map((restaurant) => {
-          const { id, name } = restaurant;
-          return (
-            <div className="restaurant" key={id}>
-              <img src={`http://127.0.0.1:8000${restaurant.logo}`} alt={name} />
-
-              <h2>{name}</h2>
-            </div>
-          );
-        })}
-      </div>
+    <div className="restaurants">
+      {restaurants.map(({ id, name, logo }) => (
+        <div className="restaurant" key={id}>
+          <img src={`http://127.0.0.1:8000${logo}`} alt={name} />
+          <h2>{name}</h2>
+        </div>
+      ))}
     </div>
   );
 };
