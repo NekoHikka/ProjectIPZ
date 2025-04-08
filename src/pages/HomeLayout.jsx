@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Navbar, Greetings, Search, Categories } from "../components";
+import UserPanel from "./UserPanel";
 
 const HomeLayout = () => {
   return (
@@ -11,6 +12,7 @@ const HomeLayout = () => {
         <Categories />
         <Outlet />
       </main>
+      <UserPanel />
     </div>
   );
 };

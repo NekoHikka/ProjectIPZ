@@ -4,3 +4,4 @@ export { default as ErrorElement } from "./ErrorElement";
 export { default as Greetings } from "./Greetings";
 export { default as Search } from "./Search";
 export { default as Categories } from "./Categories";
+export { default as LinksToAuth } from "./LinksToAuth";
