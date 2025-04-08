@@ -1,13 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const linksToAuth = [
-  { id: 1, url: "login", text: "Увійти" },
-  {
-    id: 2,
-    url: "register",
-    text: "Зареєстуватися",
-  },
-];
+import { linksToAuth } from "../data/linksToAuth";
 
 const LinksToAuth = () => {
   return (
