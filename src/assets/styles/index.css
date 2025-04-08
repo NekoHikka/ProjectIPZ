@@ -51,8 +51,9 @@ body {
 }
 .content {
   padding-left: 35px;
-  width: 57.5%;
+  width: 58.5%;
   background-color: rgb(235, 236, 238);
+  min-height: 1626px;
 }
 
 .greetingP {

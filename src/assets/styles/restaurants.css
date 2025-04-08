@@ -1,3 +1,6 @@
+.restorantGrid {
+  margin-top: 60px;
+}
 .restaurants {
   display: flex;
   flex-direction: row;
@@ -7,6 +10,7 @@
 .restaurants .restaurant img {
   width: 270px;
   height: 250px;
+  margin-top: 20px;
 }
 .restaurant {
   width: 336px;
@@ -17,5 +21,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
+}
+
+.restaurant h2 {
+  margin-top: 15px;
 }
