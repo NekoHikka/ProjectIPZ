@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import {
   Error,
+  CategoryProducts,
   // Favorite,
   // HistoryOrders,
   HomeLayout,
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
       {
         path: "menu",
         element: <Menu />,
+      },
+      {
+        path: "category/:categoryUrl",
+        element: <CategoryProducts />,
+        errorElement: <ErrorElement />,
       },
       {
         path: "orders",

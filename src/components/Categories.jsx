@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { links } from "../data/categories";
 
 const Categories = () => {
@@ -6,13 +7,15 @@ const Categories = () => {
       <h3 className="categories-title">Категорії</h3>
       <div className="categories">
         {links.map((link) => {
-          const { id, text, img } = link;
+          const { id, text, img, url } = link;
 
           return (
-            <div key={id}>
-              <img src={img} alt={text} />
-              <p>{text}</p>
-            </div>
+            <Link to={`/category/${url}`} key={id} className="category-link">
+              <div className="category-item">
+                <img src={img} alt={text} className="category-img" />
+                <p className="category-text">{text}</p>
+              </div>
+            </Link>
           );
         })}
       </div>

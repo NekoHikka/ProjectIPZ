@@ -35,3 +35,6 @@
   margin-top: 15px;
   color: var(--categories-p);
 }
+.categories a {
+  text-decoration: none;
+}
