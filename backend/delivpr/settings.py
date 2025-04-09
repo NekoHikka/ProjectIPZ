@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'restaurants.apps.RestaurantsConfig',
     'orders.apps.OrdersConfig',
 
+    'corsheaders',
     'rest_framework',
 ]
 
@@ -164,6 +165,7 @@ LOGGING = {
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -262,6 +264,8 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Default primary key field type
