@@ -51,9 +51,6 @@ def editProfile(request):
         if form.is_valid():
             form.save()
 
-            serializer = ProfileSerializer(profile)
-            serializer.save_to_json() 
-
             return redirect('main')  
 
     return render(request, 'users/profile_form.html', {'form': form})
