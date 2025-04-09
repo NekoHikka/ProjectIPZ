@@ -1,0 +1,9 @@
+.basket-container {
+  padding-left: 40px;
+  margin-top: 80px;
+}
+
+.basket-container h2 {
+  font-size: 24px;
+  font-weight: 700;
+}

@@ -1,6 +1,5 @@
-import { LinksToAuth } from "../components";
+import { LinksToAuth, PersonalCabinet, Basket } from "../components";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 const UserPanel = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,28 +17,24 @@ const UserPanel = () => {
       window.removeEventListener("storage", checkAuth);
     };
   }, []);
-  const handleLogout = () => {
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("username");
-    setIsLoggedIn(false);
-    window.location.href = "/";
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("access");
+  //   localStorage.removeItem("refresh");
+  //   localStorage.removeItem("username");
+  //   setIsLoggedIn(false);
+  //   window.location.href = "/";
+  // };
   return (
     <>
       {isLoggedIn ? (
         <div>
-          <div className="userNav">
-            <Link to="/profile" className="nav-link">
-              Мій профіль
-            </Link>
-            <Link to="/settings" className="nav-link">
-              Налаштування
-            </Link>
+          <PersonalCabinet />
+          <Basket />
+          {/* <div className="userNav">
             <button onClick={handleLogout} className="logout-btn">
               Вийти
             </button>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div className="userPanelContent">

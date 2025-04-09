@@ -8,6 +8,7 @@
 @import "./menu.css";
 @import "./restaurants.css";
 @import "./userPanel.css";
+@import "./basket.css";
 * {
   margin: 0;
   padding: 0;
