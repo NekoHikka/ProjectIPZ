@@ -1,6 +1,11 @@
 [
     {
         "username": "steve",
+        "location": "Kharkiv, UA",
+        "profile_image": "/media/images/default.jpg"
+    },
+    {
+        "username": "scholar",
         "location": null,
         "profile_image": "/media/images/default.jpg"
     }

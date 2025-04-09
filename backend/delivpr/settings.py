@@ -127,41 +127,50 @@ LOGGING = {
     },
 }
 import os
+import os
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False, 
+    'disable_existing_loggers': False,
+
     'formatters': {
         'verbose': {
             'format': '{levelname} {asctime} {module} {message}',
             'style': '{',
         },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
     },
+
     'handlers': {
         'file': {
-            'level': 'INFO',
+            'level': 'INFO',  # INFO и выше в файл
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'server.log'),
             'formatter': 'verbose',
+            'encoding': 'utf-8',
         },
-        'console': {
-            'level': 'INFO',  
+        'error_console': {
+            'level': 'ERROR',  # Только ERROR и CRITICAL в консоль
             'class': 'logging.StreamHandler',
-            'formatter': 'simple',
+            'formatter': 'verbose',
         },
     },
+
     'loggers': {
         'django': {
-            'handlers': ['file', 'console'],  
+            'handlers': ['file', 'error_console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'users.actions': {
+            'handlers': ['file', 'error_console'],
             'level': 'INFO',
             'propagate': False,
         },
     },
 }
+
+
+
 
 
 MIDDLEWARE = [

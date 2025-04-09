@@ -17,4 +17,6 @@ urlpatterns = [
     path('menuItems/', views.getMenuItems),
     path('menuItems/<str:pk>/', views.getMenuItem),
     path('profile/', views.profile_detail, name='profile-detail'),
+
+    path('testErrorView/', views.testErrorView),
 ]

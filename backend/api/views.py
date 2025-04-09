@@ -5,7 +5,11 @@ from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer, Pr
 from restaurants.models import Vendor, MenuItem, Menu
 from users.models import Profile
 from rest_framework import status
-#delete later
+import logging
+
+logger = logging.getLogger("django")
+
+
 @api_view(['GET'])
 def getRouts(request):
 
@@ -95,5 +99,10 @@ def getMenuItem(request, pk):
 
     serializer = MenuItemSerializer(menu_item, many=False)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def testErrorView(request):
+    raise ValueError("Це тестова помилка!")
+
 
 
