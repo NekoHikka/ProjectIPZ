@@ -17,24 +17,13 @@ const UserPanel = () => {
       window.removeEventListener("storage", checkAuth);
     };
   }, []);
-  // const handleLogout = () => {
-  //   localStorage.removeItem("access");
-  //   localStorage.removeItem("refresh");
-  //   localStorage.removeItem("username");
-  //   setIsLoggedIn(false);
-  //   window.location.href = "/";
-  // };
+
   return (
     <>
       {isLoggedIn ? (
         <div>
           <PersonalCabinet />
           <Basket />
-          {/* <div className="userNav">
-            <button onClick={handleLogout} className="logout-btn">
-              Вийти
-            </button>
-          </div> */}
         </div>
       ) : (
         <div className="userPanelContent">

@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
-import { customFetch } from "../utils";
+import { getMenuItems } from "../api/menu";
 
 const useMenuItems = () => {
   const [menus, setMenus] = useState([]);
   const [error, setError] = useState(null);
 
-  const fetchMenuItems = async () => {
-    try {
-      const response = await customFetch.get("/menuItems");
-      setMenus(response.data);
-    } catch (err) {
-      setError(err);
-    }
-  };
-
   useEffect(() => {
-    fetchMenuItems();
+    const fetchData = async () => {
+      try {
+        const res = await getMenuItems();
+        setMenus(res.data);
+      } catch (err) {
+        setError(err);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return { menus, error };

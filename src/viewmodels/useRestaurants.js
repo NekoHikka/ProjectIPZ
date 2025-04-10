@@ -1,21 +1,23 @@
-import { useState, useEffect } from "react";
-import { customFetch } from "../utils";
+import { useEffect, useState } from "react";
+import { getRestaurants } from "../api/restaurants";
 
 export const useRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchRestaurants = async () => {
+    const fetchData = async () => {
       try {
-        const response = await customFetch.get("/restaurants");
-        setRestaurants(response.data);
-      } catch (error) {
-        console.error("Помилка запиту:", error);
+        const res = await getRestaurants();
+        setRestaurants(res.data);
+      } catch (err) {
+        console.error("Помилка запиту:", err);
+        setError(err);
       }
     };
 
-    fetchRestaurants();
+    fetchData();
   }, []);
 
-  return { restaurants };
+  return { restaurants, error };
 };

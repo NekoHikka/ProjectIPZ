@@ -1,60 +1,42 @@
-import { Link, Form } from "react-router-dom";
-import { Button } from "../components/index";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "../components";
 import Hide from "../assets/images/input/Hide.png";
-import axios from "axios";
-
-const toLogin = async (e) => {
-  e.preventDefault();
-  const username = e.target.username.value;
-  const password = e.target.password.value;
-  try {
-    const response = await axios({
-      method: "post",
-      url: "http://127.0.0.1:8000/api/users/token/",
-      data: {
-        username: username,
-        password: password,
-      },
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = response.data;
-    localStorage.setItem("access", data.access);
-    localStorage.setItem("refresh", data.refresh);
-    console.log("Успішний логін! Токен збережено");
-    window.location.href = "/menu";
-  } catch (error) {
-    console.error("Full error object:", error);
-    if (error.response) {
-      console.error("Response data:", error.response.data);
-      console.error("Response status:", error.response.status);
-      alert(error.response.data.detail || "Помилка авторизації");
-    } else if (error.request) {
-      console.error("Request was made but no response received");
-      alert("Сервер не відповідає. Перевірте з'єднання.");
-    } else {
-      console.error("Error in setting up request:", error.message);
-      alert("Помилка з'єднання з сервером: " + error.message);
-    }
-  }
-};
+import useLogin from "../viewmodels/useLogin";
 
 const Login = () => {
+  const { login, error } = useLogin();
+  const [form, setForm] = useState({ username: "", password: "" });
+
+  const handleChange = (e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const success = await login(form.username, form.password);
+    if (success) {
+      window.location.href = "/menu";
+    }
+  };
+
   return (
     <div className="page-container">
-      <form className="login-form" method="post" onSubmit={toLogin}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <div className="container">
           <h1>Вітаю</h1>
           <h2>Ласкаво просимо назад</h2>
+
           <label htmlFor="username">Пошта</label>
           <input
             type="text"
             name="username"
             placeholder="Ваша пошта"
             className="email"
+            value={form.username}
+            onChange={handleChange}
           />
+
           <div className="password-wrapper">
             <label htmlFor="password">Пароль</label>
             <input
@@ -62,11 +44,15 @@ const Login = () => {
               name="password"
               placeholder="Напишіть свій пароль"
               className="password"
+              value={form.password}
+              onChange={handleChange}
             />
             <span>
               <img src={Hide} alt="hide eye" className="hideEye" />
             </span>
           </div>
+
+          {error && <p className="error-message">{error}</p>}
 
           <Link className="link" to="/reset">
             Забув пароль?

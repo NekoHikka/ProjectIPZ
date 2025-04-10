@@ -1,61 +1,22 @@
-import { useEffect, useState, useRef } from "react";
 import notifiction from "../assets/images/notification.svg";
-import axios from "axios";
 import defaultAvatar from "../assets/images/default-avatar.svg";
 import location from "../assets/images/location.svg";
+import { useProfileViewModel } from "../viewmodels/useProfile";
 
 const PersonalCabinet = () => {
-  const [profileData, setProfileData] = useState({
-    username: "",
-    location: "",
-    profileImage: null,
-  });
-  const [loading, setLoading] = useState(true);
-  const [isEditing, setIsEditing] = useState(false);
-  const [newAddress, setNewAddress] = useState("");
-  const [showMenu, setShowMenu] = useState(false);
-  const menuRef = useRef(null);
-  const baseURL = "http://127.0.0.1:8000";
-
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      const token = localStorage.getItem("access");
-
-      if (!token) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const response = await axios.get(`${baseURL}/api/profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        const profileImagePath = response.data.profile_image
-          ? `${baseURL}${response.data.profile_image}`
-          : null;
-
-        setProfileData({
-          username: response.data.username,
-          location: response.data.location,
-          profileImage: profileImagePath,
-        });
-
-        localStorage.setItem("username", response.data.username);
-        if (profileImagePath) {
-          localStorage.setItem("profileImage", profileImagePath);
-        }
-      } catch (error) {
-        console.error("Помилка при завантаженні даних профілю:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProfileData();
-  }, []);
+  const {
+    profileData,
+    loading,
+    isEditing,
+    newAddress,
+    setNewAddress,
+    setIsEditing,
+    handleSaveAddress,
+    handleLogout,
+    showMenu,
+    setShowMenu,
+    menuRef,
+  } = useProfileViewModel();
 
   const handleAddressChange = () => {
     setNewAddress(profileData.location || "");
@@ -65,34 +26,6 @@ const PersonalCabinet = () => {
   const handleCancelEdit = () => {
     setIsEditing(false);
     setNewAddress(profileData.location);
-  };
-
-  const handleSaveAddress = async () => {
-    const token = localStorage.getItem("access");
-    try {
-      const response = await axios.patch(
-        `${baseURL}/api/profile/`,
-        { location: newAddress },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      setProfileData((prev) => ({ ...prev, location: response.data.location }));
-      setEditingAddress(false);
-    } catch (error) {
-      console.error("Помилка при оновленні адреси:", error);
-      alert("Не вдалося зберегти адресу.");
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("username");
-    window.location.href = "/";
   };
 
   return (
