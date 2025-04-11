@@ -107,7 +107,7 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'INFO',  # Можно 'DEBUG' для более подробных логов
+            'level': 'INFO',  
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'server.log'),
             'formatter': 'verbose',
@@ -142,14 +142,14 @@ LOGGING = {
 
     'handlers': {
         'file': {
-            'level': 'INFO',  # INFO и выше в файл
+            'level': 'INFO',  
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'server.log'),
             'formatter': 'verbose',
             'encoding': 'utf-8',
         },
         'error_console': {
-            'level': 'ERROR',  # Только ERROR и CRITICAL в консоль
+            'level': 'ERROR',  
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
         },
@@ -238,8 +238,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
-# Настройки сообщений
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 MESSAGE_TAGS = {
