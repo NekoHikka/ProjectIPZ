@@ -6,6 +6,7 @@ from restaurants.models import Vendor, MenuItem, Menu
 from users.models import Profile
 from rest_framework import status
 import logging
+from django.utils.timezone import now
 
 logger = logging.getLogger("django")
 
@@ -104,5 +105,18 @@ def getMenuItem(request, pk):
 def testErrorView(request):
     raise ValueError("Це тестова помилка!")
 
-
+@api_view(['GET'])
+def hasVendorsChanged(request):
+    since = request.GET.get('since')
+    if since:
+        try:
+            from datetime import datetime
+            from django.utils.dateparse import parse_datetime
+            since_dt = parse_datetime(since)
+        except Exception:
+            return Response({"error": "Invalid date"}, status=400)
+        changed = Vendor.objects.filter(updated_at__gt=since_dt).exists()
+    else:
+        changed = True  
+    return Response({"vendors_changed": changed, "timestamp": now().isoformat()})
 

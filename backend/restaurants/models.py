@@ -6,7 +6,7 @@ class Vendor(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     logo = models.ImageField(upload_to='vendor_logos/', blank=True, null=True, default='images/default.jpg')  
-    
+    updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.name
 
@@ -14,7 +14,7 @@ class Menu(models.Model):
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='menu/', blank=True, null=True, default='images/default.jpg')  
-    
+
     def __str__(self):
         return self.name
 

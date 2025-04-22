@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-
+from .views import hasVendorsChanged
 urlpatterns = [
     path('users/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('users/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
@@ -17,6 +17,11 @@ urlpatterns = [
     path('menuItems/', views.getMenuItems),
     path('menuItems/<str:pk>/', views.getMenuItem),
     path('profile/', views.profile_detail, name='profile-detail'),
+    path('api/vendors/has-changed/', hasVendorsChanged, name='vendors-has-changed'),
 
+    
     path('testErrorView/', views.testErrorView),
+    
 ]
+
+
