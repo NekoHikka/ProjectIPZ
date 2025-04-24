@@ -5,13 +5,11 @@ const Greetings = () => {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
-    // Спочатку перевіряємо, чи є ім'я користувача в localStorage
     const storedUsername = localStorage.getItem("username");
 
     if (storedUsername) {
       setUsername(storedUsername);
     } else {
-      // Якщо немає, робимо запит до API
       const fetchUserProfile = async () => {
         const token = localStorage.getItem("access");
         if (!token) return;
