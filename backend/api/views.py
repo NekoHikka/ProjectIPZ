@@ -7,7 +7,8 @@ from users.models import Profile
 from rest_framework import status
 import logging
 from django.utils.timezone import now
-
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
 logger = logging.getLogger("django")
 
 
@@ -34,6 +35,29 @@ def getRouts(request):
     ]
 
     return Response(routes)
+
+@api_view(['POST'])
+def register_user_api(request):
+    data = request.data
+
+    required_fields = ['username', 'password', 'email']
+    if not all(field in data for field in required_fields):
+        return Response({'error': 'необхідні поля: username, password, email'}, status=status.HTTP_400_BAD_REQUEST)
+
+    if User.objects.filter(username=data['username'].lower()).exists():
+        return Response({'error': 'Користувач з таким username вже є'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = User.objects.create(
+        username=data['username'].lower(),
+        email=data['email'],
+        password=make_password(data['password'])
+    )
+    profile = user.profile
+    profile.save()
+
+    serializer = ProfileSerializer(profile)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 
 @api_view(['GET', 'PUT'])
 @permission_classes([IsAuthenticated])
