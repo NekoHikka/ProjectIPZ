@@ -1,33 +1,43 @@
-import { Link, Form } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Hide from "../assets/images/input/Hide.png";
-
-const toRegister = () => {
-  console.log("Регістрація");
-};
+import useRegister from "../viewmodels/useRegister";
+import { useState } from "react";
 
 const Register = () => {
+  const { register, error } = useRegister();
+  const navigate = useNavigate();
+  const [formError, setFormError] = useState("");
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const username = form.username.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const result = await register(username, password, email);
+    if (result) {
+      navigate("/login"); // перенаправлення після успіху
+    } else {
+      setFormError("Не вдалося зареєструватися");
+    }
+  };
+
   return (
     <div className="page-container">
-      <Form method="post" className="register-form">
+      <form method="post" className="register-form" onSubmit={handleRegister}>
         <div className="container">
           <h1>Реєстрація</h1>
-          <div className="name-surname">
-            <div className="input-group">
-              <label htmlFor="name">Ім'я</label>
-              <input
-                type="text"
-                name="name"
-                defaultValue="Напишіть ваше ім'я"
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="surname">Прізвище</label>
-              <input
-                type="text"
-                name="surname"
-                defaultValue="Напишіть ваше прізвище"
-              />
-            </div>
+
+          <div className="input-group">
+            <label htmlFor="name">Логін</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Напишіть ваш логін"
+              required
+            />
           </div>
 
           <div className="input-group">
@@ -35,7 +45,8 @@ const Register = () => {
             <input
               type="email"
               name="email"
-              defaultValue="example.email@gmail.com"
+              placeholder="example.email@gmail.com"
+              required
             />
           </div>
 
@@ -45,18 +56,19 @@ const Register = () => {
               <input
                 type="password"
                 name="password"
-                defaultValue="Мінімум 8 знаків у паролі"
+                placeholder="Мінімум 8 знаків у паролі"
+                required
               />
             </div>
             <span>
               <img src={Hide} alt="hide eye" className="hideEyeR" />
             </span>
           </div>
-          <button
-            onClick={toRegister}
-            type="submit"
-            className="primary-button submitRegister"
-          >
+
+          {error && <p className="error-message">{error}</p>}
+          {formError && <p className="error-message">{formError}</p>}
+
+          <button type="submit" className="primary-button submitRegister">
             Зареєструватися
           </button>
 
@@ -67,7 +79,7 @@ const Register = () => {
             </Link>
           </div>
         </div>
-      </Form>
+      </form>
     </div>
   );
 };

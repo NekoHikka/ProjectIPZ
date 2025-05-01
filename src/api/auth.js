@@ -7,3 +7,12 @@ export const loginUser = async (username, password) => {
   });
   return response.data;
 };
+
+export const registerUser = async (username, password, email) => {
+  const response = await customFetch.post("register/", {
+    username,
+    password,
+    email,
+  });
+  return response.data;
+};
