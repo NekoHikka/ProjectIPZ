@@ -19,6 +19,7 @@ urlpatterns = [
     path('menuItems/', views.getMenuItems),
     path('menuItems/<str:pk>/', views.getMenuItem),
     path('profile/', views.profile_detail, name='profile-detail'),
+    path('profile/location/', views.update_location_api, name="update-location-api"),
     path('api/vendors/has-changed/', hasVendorsChanged, name='vendors-has-changed'),
 
     

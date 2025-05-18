@@ -144,3 +144,16 @@ def hasVendorsChanged(request):
         changed = True  
     return Response({"vendors_changed": changed, "timestamp": now().isoformat()})
 
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_location_api(request):
+    profile = request.user.profile
+    location = request.data.get('location')
+
+    if location:
+        profile.location = location
+        profile.save()
+        return Response({'message': 'Location updated', 'location': profile.location})
+    else:
+        return Response({'error': 'Location is required'}, status=status.HTTP_400_BAD_REQUEST)
+

@@ -1,7 +1,7 @@
 [
     {
         "username": "steve",
-        "location": null,
-        "profile_image": "/media/images/default.jpg"
+        "location": "50.442238, 30.520363",
+        "profile_image": "/media/users_profile_photo/gerb.png"
     }
 ]

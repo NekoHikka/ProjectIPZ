@@ -1,7 +1,7 @@
 import logging
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from .forms import UserRegisterForm, ProfileForm
+from .forms import UserRegisterForm, ProfileForm, LocationForm
 from django.contrib import messages
 from api.serializers import ProfileSerializer 
 
@@ -61,3 +61,16 @@ def editProfile(request):
             return redirect('main')  
 
     return render(request, 'users/profile_form.html', {'form': form})
+
+def update_location(request):
+    profile = request.user.profile
+    form = LocationForm(instance=profile)
+
+    if request.method == 'POST':
+        form = LocationForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Місцезнаходження оновлено!')
+            return redirect('main')  # або куди ти хочеш
+
+    return render(request, 'update_location.html', {'form': form})

@@ -16,6 +16,8 @@
         <a href="{% url 'main' %}">Main</a>
         <a href="{% url 'logout' %}">logout</a>
         <a href="{% url 'edit-profile' %}">edit profile</a>
+        <a href="{% url 'update-location' %}">update location</a>
+
         {% else  %}
         <a href="{% url 'login' %}">login</a>
         {% endif %}

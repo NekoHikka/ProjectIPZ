@@ -13,9 +13,16 @@ class UserRegisterForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['username','location', 'profile_image']
+        fields = ['username','profile_image']
 
 # class ProfileUpdateForm(forms.ModelForm):
 #     class Meta:
 #         model = Profile
 #         fields = ['location', 'profile_image', 'is_vendor']
+class LocationForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['location']
+        widgets = {
+            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введіть ваше місцезнаходження'}),
+        }
