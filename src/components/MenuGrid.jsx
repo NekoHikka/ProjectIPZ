@@ -1,9 +1,12 @@
 import useMenuItems from "../viewmodels/useMenuItems";
+import { useCart } from "../utils/CartContext";
 import star from "../assets/images/star.svg";
 import plus from "../assets/images/plus.png";
 
 const MenuGrid = () => {
   const { menus, error } = useMenuItems();
+  const { addToCart } = useCart();
+
   if (error) return <div>Помилка завантаження меню: {error.message}</div>;
 
   return (
@@ -30,7 +33,10 @@ const MenuGrid = () => {
                   <p className="price">{price}</p>
                   <span className="valute">₴</span>
                 </div>
-                <button className="addingToBasket">
+                <button
+                  className="addingToBasket"
+                  onClick={() => addToCart({ id, name, price, image })}
+                >
                   <img src={plus} alt="add" />
                 </button>
               </div>

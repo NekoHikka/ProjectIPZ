@@ -143,6 +143,19 @@
   cursor: pointer;
 }
 
+.profile-menu {
+  display: flex;
+  gap: 10px;
+}
+.menu-item {
+  background-color: var(--orange-color);
+  border: none;
+  height: 30px;
+  color: var(--white-color);
+  border-radius: 8px;
+  padding: 5px;
+}
+
 /* затемнений фон  для модального вікна*/
 .modal-backdrop {
   position: fixed;
