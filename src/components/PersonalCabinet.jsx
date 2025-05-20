@@ -2,6 +2,7 @@ import notifiction from "../assets/images/notification.svg";
 import defaultAvatar from "../assets/images/default-avatar.svg";
 import location from "../assets/images/location.svg";
 import { useProfileViewModel } from "../viewmodels/useProfile";
+import ChangePhoto from "../components/ChangePhoto";
 
 const PersonalCabinet = () => {
   const {
@@ -13,9 +14,18 @@ const PersonalCabinet = () => {
     setIsEditing,
     handleSaveAddress,
     handleLogout,
+    isChangePhotoOpen,
+    changePhoto,
+    closeChangePhoto,
     showMenu,
     setShowMenu,
     menuRef,
+    handleFileClick,
+    handleFileChange,
+    selectedFile,
+    fileInputRef,
+    handleUploadPhoto,
+    uploadingPhoto,
   } = useProfileViewModel();
 
   const handleAddressChange = () => {
@@ -55,7 +65,9 @@ const PersonalCabinet = () => {
 
           {showMenu && (
             <div className="profile-menu" ref={menuRef}>
-              <button className="menu-item">Змінити фото</button>
+              <button className="menu-item" onClick={changePhoto}>
+                Змінити фото
+              </button>
               <button className="menu-item" onClick={handleLogout}>
                 Вийти
               </button>
@@ -102,6 +114,17 @@ const PersonalCabinet = () => {
           )}
         </div>
       </div>
+      {isChangePhotoOpen && (
+        <ChangePhoto
+          onClose={closeChangePhoto}
+          handleFileClick={handleFileClick}
+          handleFileChange={handleFileChange}
+          fileInputRef={fileInputRef}
+          handleUploadPhoto={handleUploadPhoto}
+          uploadingPhoto={uploadingPhoto}
+          selectedFile={selectedFile}
+        />
+      )}
     </div>
   );
 };
