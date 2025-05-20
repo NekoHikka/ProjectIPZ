@@ -142,3 +142,100 @@
 .change-address:hover {
   cursor: pointer;
 }
+
+/* затемнений фон  для модального вікна*/
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-change-container {
+  background-color: white;
+  padding-top: 24px;
+  padding-left: 24px;
+  border-radius: 10px;
+  width: 560px;
+  height: 450px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  color: var(--black-color);
+}
+
+.modal-header h1 {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.modal-header {
+  display: flex;
+  gap: 145px;
+}
+
+.content-block {
+  width: 512px;
+  height: 298px;
+  margin-top: 15px;
+  border: 2px dashed var(--grey-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.content-block h2 {
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.content-block p {
+  color: var(--grey-modal);
+}
+
+.content-block a {
+  text-decoration: none;
+  color: var(--orange-color);
+  font-family: var(--Inter);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 24px;
+}
+
+.modal-buttons button {
+  border: none;
+  border-radius: 6px;
+  height: 36px;
+  width: 95px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-family: var(--Inter);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.secondaryBtn {
+  background-color: var(--white-color);
+  color: var(--grey-color);
+}
+
+.primaryBtn {
+  background-color: var(--orange-color);
+  color: var(--white-color);
+}

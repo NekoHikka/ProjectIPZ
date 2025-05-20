@@ -29,12 +29,13 @@
   --orange-color: hsla(32, 98%, 49%, 1);
   --white-color: hsla(0, 0%, 100%, 1);
   --red-color: hsla(2, 85%, 42%, 1);
-  --grey-color: hsla(222, 11%, 77%, 1);
   --grey-secondary: hsla(222, 12%, 38%, 1);
   --grey-hr: hsla(218, 14%, 89%, 1);
   --grey-h2: hsla(222, 8%, 60%, 1);
   --product-name: hsla(0, 0%, 18%, 1);
   --categories-p: hsla(262, 12%, 64%, 1);
+  --black-color: hsla(218, 15%, 11%, 1);
+  --grey-modal: hsla(220, 10%, 48%, 1);
 
   --navlinks-color: #a098ae;
 
