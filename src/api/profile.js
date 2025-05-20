@@ -8,10 +8,10 @@ export const getProfile = (token) => {
   });
 };
 
-export const updateLocation = (location, token) => {
-  return customFetch.patch(
-    "/profile/",
-    { location },
+export const updateLocation = (location, latitude, longitude, token) => {
+  return customFetch.put(
+    "/profile/location/",
+    { location, latitude, longitude },
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -19,4 +19,15 @@ export const updateLocation = (location, token) => {
       },
     }
   );
+};
+
+export const updateProfileImage = (profileImage, token) => {
+  const formData = new FormData();
+  formData.append("profile_image", profileImage);
+
+  return customFetch.put("/profile/", formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
