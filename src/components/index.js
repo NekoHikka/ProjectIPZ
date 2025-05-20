@@ -9,3 +9,4 @@ export { default as MenuGrid } from "./MenuGrid";
 export { default as RestorantGrid } from "./RestorantGrid";
 export { default as PersonalCabinet } from "./PersonalCabinet";
 export { default as Basket } from "./Basket";
+export { default as ChangePhoto } from "./ChangePhoto";
