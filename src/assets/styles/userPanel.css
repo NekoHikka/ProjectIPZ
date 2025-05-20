@@ -49,6 +49,10 @@
   border-radius: 16px;
   object-fit: cover;
 }
+
+.profile-image:hover {
+  cursor: pointer;
+}
 .profile-image-container {
   order: 2;
 }
