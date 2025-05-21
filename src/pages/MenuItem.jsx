@@ -17,7 +17,6 @@ const MenuItem = () => {
       />
       <h2>{menuItem.name}</h2>
       <p>Ціна: {menuItem.price} ₴</p>
-      <p>Опис: {menuItem.description}</p>
       <p>
         Заклад: <strong>{restaurantName}</strong>
       </p>

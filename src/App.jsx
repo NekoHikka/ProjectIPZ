@@ -4,7 +4,7 @@ import {
   Error,
   CategoryProducts,
   // Favorite,
-  // HistoryOrders,
+  RestorantItem,
   HomeLayout,
   Login,
   Menu,
@@ -76,6 +76,11 @@ const router = createBrowserRouter([
   {
     path: "menuItem/:id",
     element: <MenuItem />,
+    errorElement: <ErrorElement />,
+  },
+  {
+    path: "restorantItem/:id",
+    element: <RestorantItem />,
     errorElement: <ErrorElement />,
   },
 ]);
