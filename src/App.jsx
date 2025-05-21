@@ -8,7 +8,7 @@ import {
   HomeLayout,
   Login,
   Menu,
-  // Messages,
+  MenuItem,
   Orders,
   Register,
   Restorants,
@@ -42,6 +42,7 @@ const router = createBrowserRouter([
         element: <CategoryProducts />,
         errorElement: <ErrorElement />,
       },
+
       {
         path: "orders",
         element: <Orders />,
@@ -71,6 +72,11 @@ const router = createBrowserRouter([
     path: "/reset",
     element: <ResetPassword />,
     errorElement: <Error />,
+  },
+  {
+    path: "menuItem/:id",
+    element: <MenuItem />,
+    errorElement: <ErrorElement />,
   },
 ]);
 const App = () => {

@@ -1,6 +1,7 @@
 import star from "../assets/images/star.svg";
 import plus from "../assets/images/plus.png";
 import { useCart } from "../utils/CartContext";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ id, name, price, image }) => {
   const { addToCart } = useCart();
@@ -8,11 +9,13 @@ const ProductCard = ({ id, name, price, image }) => {
   return (
     <div className="product" key={id}>
       <div className="product-img-container">
-        <img
-          src={`http://127.0.0.1:8000${image}`}
-          alt={name}
-          className="product-img"
-        />
+        <Link to={`/menuItem/${id}`}>
+          <img
+            src={`http://127.0.0.1:8000${image}`}
+            alt={name}
+            className="product-img"
+          />
+        </Link>
       </div>
       <div className="product-info">
         <div className="stars">
