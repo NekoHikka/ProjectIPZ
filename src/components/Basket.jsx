@@ -28,6 +28,11 @@ const Basket = () => {
             src={`http://127.0.0.1:8000${item.image}`}
             alt={item.name}
             className="basket-item-image"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.style.opacity = "0.7";
+              console.log(`Failed to load image for ${item.name}`);
+            }}
           />
           <div className="basket-item-info">
             <p className="item-title">{item.name}</p>

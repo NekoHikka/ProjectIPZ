@@ -50,13 +50,13 @@ body {
 
 .layout {
   display: flex;
-  height: 100vh; /* Повна висота екрану */
+  min-height: 100vh; /* Повна висота екрану */
 }
 .content {
   padding-left: 35px;
   width: 58.5%;
   background-color: rgb(235, 236, 238);
-  min-height: 1626px;
+  padding-bottom: 50px;
 }
 
 .greetingP {

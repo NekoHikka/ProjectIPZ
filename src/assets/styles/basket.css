@@ -1,6 +1,7 @@
 .basket-container {
   padding-left: 40px;
   margin-top: 80px;
+  padding-bottom: 50px;
 }
 
 .basket-container h2 {
@@ -12,6 +13,7 @@
 .basket-item-image {
   width: 80px;
   height: 80px;
+  object-fit: contain;
 }
 
 .basket-item {
