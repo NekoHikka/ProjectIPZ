@@ -4,8 +4,6 @@ const Restorants = () => {
   return (
     <div className="restorantGrid">
       <RestorantGrid />
-      <RestorantGrid />
-      <RestorantGrid />
     </div>
   );
 };
