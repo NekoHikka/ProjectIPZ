@@ -5,7 +5,6 @@ const Menu = () => {
     <>
       <h1 className="menu-title">Популярні замовлення</h1>
       <MenuGrid />
-      <MenuGrid />
     </>
   );
 };

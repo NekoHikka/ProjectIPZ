@@ -2,17 +2,23 @@ import useMenuItems from "../viewmodels/useMenuItems";
 import { useCart } from "../utils/CartContext";
 import star from "../assets/images/star.svg";
 import plus from "../assets/images/plus.png";
+import { useSearch } from "../utils/SearchContext";
 
 const MenuGrid = () => {
   const { menus, error } = useMenuItems();
   const { addToCart } = useCart();
+  const { searchQuery } = useSearch();
+
+  const filteredMenus = menus.filter((item) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   if (error) return <div>Помилка завантаження меню: {error.message}</div>;
 
   return (
     <div>
       <div className="products">
-        {menus.map(({ id, name, price, image }) => (
+        {filteredMenus.map(({ id, name, price, image }) => (
           <div className="product" key={id}>
             <div className="product-img-container">
               <img
