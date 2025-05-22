@@ -20,7 +20,7 @@
             {% else %}
                 <img src="{% static 'images/default.jpg' %}" alt="Default Logo">
             {% endif %}
-            <h2>{{ vendor.name }}</h2>
+            <h2><a href="{% url 'vendor-detail' vendor.id %}">{{ vendor.name }}</a></h2>
             <p>{{ vendor.description }}</p>
         </div>
     {% empty %}

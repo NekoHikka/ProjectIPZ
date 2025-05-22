@@ -31,6 +31,27 @@ class MenuItemSerializer(serializers.ModelSerializer):
         model = MenuItem
         fields = '__all__'
 
+class MenuWithItemsSerializer(serializers.ModelSerializer):
+    items = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Menu
+        fields = ['id', 'name', 'image', 'categories', 'items']
+
+    def get_items(self, obj):
+        items = MenuItem.objects.filter(menu=obj)
+        return MenuItemSerializer(items, many=True).data
+
+class VendorDetailSerializer(serializers.ModelSerializer):
+    menus = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Vendor
+        fields = ['id', 'name', 'description', 'logo', 'menus']
+
+    def get_menus(self, obj):
+        menus = Menu.objects.filter(vendor=obj)
+        return MenuWithItemsSerializer(menus, many=True).data
 
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)

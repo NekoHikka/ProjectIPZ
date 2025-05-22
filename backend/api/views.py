@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer, ProfileSerializer
+from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer, ProfileSerializer, VendorDetailSerializer  
 from restaurants.models import Vendor, MenuItem, Menu
 from users.models import Profile
 from rest_framework import status
@@ -29,6 +29,7 @@ def getRouts(request):
         {'GET':'/api/menuItems'},
         {'GET':'/api/menuItems/id'},
         {'GET': '/api/menuItems?menu_id=<menu_id>'},
+        {'GET':'/api/vendors/id'},
 
         {'GET': '/api/profile'},  
         {'PUT': '/api/profile'},  
@@ -129,6 +130,16 @@ def getMenuItem(request, pk):
         return Response({"error": "MenuItem not found"}, status=status.HTTP_404_NOT_FOUND)
 
     serializer = MenuItemSerializer(menu_item, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getVendorDetailed(request, pk): 
+    try:
+        vendor = Vendor.objects.get(id=pk)
+    except Vendor.DoesNotExist:
+        return Response({"error": "Vendor not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = VendorDetailSerializer(vendor)
     return Response(serializer.data)
 
 @api_view(['GET'])

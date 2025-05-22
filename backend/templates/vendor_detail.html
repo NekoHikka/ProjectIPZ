@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ vendor.name }}</h1>
+<p>{{ vendor.description }}</p>
+<img src="{{ vendor.logo.url }}" alt="{{ vendor.name }} Logo" style="max-width: 200px;">
+
+<h2>Меню</h2>
+{% for menu in menus %}
+    <div>
+        <h3>{{ menu.name }}</h3>
+        {% if menu.image %}
+            <img src="{{ menu.image.url }}" alt="Menu Image" style="max-width: 150px;">
+        {% endif %}
+
+        <ul>
+        {% for item in menu.items %}
+            <li><strong>{{ item.name }}</strong> — {{ item.price }} ₴ <br> {{ item.description }}</li>
+        {% empty %}
+            <li>Немає страв.</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endfor %}
+{% endblock %}
