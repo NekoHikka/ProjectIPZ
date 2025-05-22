@@ -32,6 +32,12 @@ def getRouts(request):
 
         {'GET': '/api/profile'},  
         {'PUT': '/api/profile'},  
+        {'PUT': '/api/profile/location'},  
+
+        {'POST':'/api/register'},
+        {'GET':'/api/testErrorView'},
+
+        {'GET':'/api/vendors/has-changed?since=<timestamp>'},
     ]
 
     return Response(routes)
