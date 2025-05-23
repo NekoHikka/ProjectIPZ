@@ -1,9 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import useMenuItem from "../viewmodels/useMenuItem";
 
 const MenuItem = () => {
   const { id } = useParams();
-  const { menuItem, restaurantName, error } = useMenuItem(id);
+  const {
+    menuItem,
+    restaurantName,
+    restaurantId,
+    menuName,
+    categoryName,
+    categoryUrl,
+    error,
+  } = useMenuItem(id);
 
   if (error) return <div>Помилка: {error.message}</div>;
   if (!menuItem) return <div>Завантаження...</div>;
@@ -17,9 +25,28 @@ const MenuItem = () => {
       />
       <h2>{menuItem.name}</h2>
       <p>Ціна: {menuItem.price} ₴</p>
+
+      {categoryName && categoryUrl && (
+        <p>
+          Категорія:
+          <Link to={`/category/${categoryUrl}`}>
+            <strong>{categoryName}</strong>
+          </Link>
+        </p>
+      )}
+
       <p>
-        Заклад: <strong>{restaurantName}</strong>
+        Меню: <strong>{menuName}</strong>
       </p>
+
+      {restaurantName && restaurantId && (
+        <p>
+          Заклад:
+          <Link to={`/restorantItem/${restaurantId}`}>
+            <strong>{restaurantName}</strong>
+          </Link>
+        </p>
+      )}
     </div>
   );
 };

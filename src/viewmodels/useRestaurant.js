@@ -1,6 +1,5 @@
-// viewmodels/useRestaurant.js
 import { useEffect, useState } from "react";
-import { getRestaurantById } from "../api/menuItem"; // або з окремого файлу, якщо api поділено
+import { getRestaurantById } from "../api/restaurants";
 
 const useRestaurant = (id) => {
   const [restaurant, setRestaurant] = useState(null);
