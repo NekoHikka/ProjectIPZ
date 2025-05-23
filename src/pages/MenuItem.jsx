@@ -8,6 +8,7 @@ const MenuItem = () => {
     restaurantName,
     restaurantId,
     menuName,
+    menuId,
     categoryName,
     categoryUrl,
     error,
@@ -36,7 +37,10 @@ const MenuItem = () => {
       )}
 
       <p>
-        Меню: <strong>{menuName}</strong>
+        Меню:
+        <Link to={`/menus/${menuId}`}>
+          <strong>{menuName}</strong>
+        </Link>
       </p>
 
       {restaurantName && restaurantId && (

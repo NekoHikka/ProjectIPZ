@@ -9,6 +9,7 @@ const useMenuItem = (id) => {
   const [restaurantName, setRestaurantName] = useState("");
   const [restaurantId, setRestaurantId] = useState(null);
   const [menuName, setMenuName] = useState("");
+  const [menuId, setMenuId] = useState(null);
   const [categoryName, setCategoryName] = useState("");
   const [categoryUrl, setCategoryUrl] = useState(null);
   const [error, setError] = useState(null);
@@ -33,10 +34,10 @@ const useMenuItem = (id) => {
         }
 
         const menuRes = await getMenuById(item.menu);
-        const menu = menuRes.data;
-        setMenuName(menu.name);
+        setMenuName(menuRes.data.name);
+        setMenuId(menuRes.data.id);
 
-        const restRes = await getRestaurantById(menu.vendor.id);
+        const restRes = await getRestaurantById(menuRes.data.vendor.id);
         setRestaurantName(restRes.data.name);
         setRestaurantId(restRes.data.id);
       } catch (err) {
@@ -52,6 +53,7 @@ const useMenuItem = (id) => {
     restaurantName,
     restaurantId,
     menuName,
+    menuId,
     categoryName,
     categoryUrl,
     error,

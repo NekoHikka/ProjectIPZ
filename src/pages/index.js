@@ -11,3 +11,4 @@ export { default as SingleOrder } from "./SingleOrder";
 export { default as CategoryProducts } from "./CategoryProducts";
 export { default as MenuItem } from "./MenuItem";
 export { default as RestorantItem } from "./RestorantItem";
+export { default as Menus } from "./Menus";

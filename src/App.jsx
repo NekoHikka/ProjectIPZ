@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   Error,
   CategoryProducts,
-  // Favorite,
+  Menus,
   RestorantItem,
   HomeLayout,
   Login,
@@ -81,6 +81,11 @@ const router = createBrowserRouter([
   {
     path: "restorantItem/:id",
     element: <RestorantItem />,
+    errorElement: <ErrorElement />,
+  },
+  {
+    path: "menus/:id",
+    element: <Menus />,
     errorElement: <ErrorElement />,
   },
 ]);
