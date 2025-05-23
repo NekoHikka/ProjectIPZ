@@ -10,6 +10,26 @@ const ChangePhoto = ({
   uploadingPhoto,
   selectedFile,
 }) => {
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      const event = {
+        target: {
+          files: [file],
+        },
+      };
+      handleFileChange(event);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
     <div className="modal-backdrop">
       <div className="modal-change-container">
@@ -22,7 +42,11 @@ const ChangePhoto = ({
             style={{ cursor: "pointer" }}
           />
         </div>
-        <div className="content-block">
+        <div
+          className="content-block"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
           <img src={UploadBtn} alt="кнопка завантаження файлу" />
           {selectedFile ? (
             <p className="selected-file-name">Вибрано: {selectedFile.name}</p>
