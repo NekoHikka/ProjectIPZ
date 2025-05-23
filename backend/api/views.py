@@ -1,8 +1,8 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer, ProfileSerializer, VendorDetailSerializer  
-from restaurants.models import Vendor, MenuItem, Menu
+from .serializers import VendorSerializer,MenuSerializer, MenuItemSerializer, ProfileSerializer, VendorDetailSerializer, CategorySerializer 
+from restaurants.models import Vendor, MenuItem, Menu, Category
 from users.models import Profile
 from rest_framework import status
 import logging
@@ -131,6 +131,14 @@ def getMenuItem(request, pk):
 
     serializer = MenuItemSerializer(menu_item, many=False)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def getCategories(request):
+    categories = Category.objects.all()
+    serializer = CategorySerializer(categories, many=True)
+    return Response(serializer.data)
+
+
 
 @api_view(['GET'])
 def getVendorDetailed(request, pk): 
