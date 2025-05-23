@@ -27,6 +27,23 @@ const MenuItem = () => {
       <h2>{menuItem.name}</h2>
       <p>Ціна: {menuItem.price} ₴</p>
 
+      {menuItem.description && menuItem.description.length > 0 ? (
+        <div>
+          <p>Опис:</p>
+          <ul>
+            {menuItem.description
+              .split("-")
+              .map((line) => line.trim())
+              .filter((line) => line.length > 0)
+              .map((line, index) => (
+                <li key={index}>{line}</li>
+              ))}
+          </ul>
+        </div>
+      ) : (
+        <p>Ця страва не має опису</p>
+      )}
+
       {categoryName && categoryUrl && (
         <p>
           Категорія:
