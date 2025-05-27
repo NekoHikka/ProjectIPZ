@@ -115,3 +115,133 @@
   padding-left: 30px;
   padding-top: 30px;
 }
+
+.container {
+  width: 390px;
+  border-radius: 6px;
+}
+
+.input-check {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.tabs {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--tabs-grey);
+}
+
+.tab {
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--tabs-grey);
+}
+
+.tab-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: var(--Inter);
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.tab-content {
+  max-height: 0;
+  padding: 0 1em;
+  background: white;
+  transition: all 0.35s;
+  font-family: var(--Inter);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--secondary-grey);
+}
+
+input:checked ~ .tab-content {
+  max-height: 100vh;
+  padding: 1em;
+}
+
+.item-name {
+  font-family: var(--Inter);
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.item-price {
+  font-family: var(--Inter);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--secondary-red-color);
+}
+
+.item-description {
+  width: 779px;
+  height: 48px;
+  font-family: var(--Inter);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--secondary-grey);
+}
+
+.nutritional-value {
+  font-family: var(--Inter);
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.menu-content {
+  height: 500px;
+}
+
+.img-item {
+  width: 602px;
+  height: auto;
+  max-height: 501px;
+  object-fit: contain;
+  border-radius: 16px;
+  image-rendering: auto;
+}
+.menu-details-container {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 500px;
+}
+
+.menu-item-image-block {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-item-info-block {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item-description-list {
+  width: 779px;
+  height: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-description-list li {
+  padding: 6px 12px;
+  font-family: var(--Inter);
+  font-size: 16px;
+  color: var(--secondary-grey);
+}

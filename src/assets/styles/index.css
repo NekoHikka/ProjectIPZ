@@ -9,6 +9,8 @@
 @import "./restaurants.css";
 @import "./userPanel.css";
 @import "./basket.css";
+@import "./reviews.css";
+@import "./header.css";
 * {
   margin: 0;
   padding: 0;
@@ -37,7 +39,10 @@
   --black-color: hsla(218, 15%, 11%, 1);
   --grey-modal: hsla(220, 10%, 48%, 1);
   --grey-hr: hsla(0, 0%, 86%, 1);
-
+  --header-black: hsla(120, 1%, 14%, 1);
+  --secondary-red-color: hsla(5, 100%, 69%, 1);
+  --secondary-grey: hsla(90, 1%, 55%, 1);
+  --tabs-grey: hsla(60, 2%, 92%, 1);
   --navlinks-color: #a098ae;
 
   --Poppins: "Poppins", sans-serif;
