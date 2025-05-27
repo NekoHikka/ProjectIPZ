@@ -1,29 +1,33 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useMenuItem from "../viewmodels/useMenuItem";
 import { Header, Reviews } from "../components";
 import BtnDown from "../assets/images/buttons/button-down.svg";
+import { useCart } from "../utils/CartContext";
 
 const MenuItem = () => {
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
   const { id } = useParams();
-  const {
-    menuItem,
-    restaurantName,
-    restaurantId,
-    menuName,
-    menuId,
-    categoryName,
-    categoryUrl,
-    error,
-  } = useMenuItem(id);
+  const { menuItem, error } = useMenuItem(id);
 
   if (error) return <div>Помилка: {error.message}</div>;
   if (!menuItem) return <div>Завантаження...</div>;
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: menuItem.id,
+      name: menuItem.name,
+      price: menuItem.price,
+      image: menuItem.image,
+    });
+    alert("Додано до кошика!");
+    navigate("/menu");
+  };
 
   return (
     <>
       <Header />
       <div className="menu-details-container">
-        {/* Фото зліва */}
         <div className="menu-item-image-block">
           <img
             src={`http://127.0.0.1:8000${menuItem.image}`}
@@ -32,7 +36,6 @@ const MenuItem = () => {
           />
         </div>
 
-        {/* Інформація справа */}
         <div className="menu-item-info-block">
           <h2 className="item-name">{menuItem.name}</h2>
           <p className="item-price">{menuItem.price}₴</p>
@@ -52,7 +55,12 @@ const MenuItem = () => {
           ) : (
             <p className="item-description">Ця страва не має опису</p>
           )}
-
+          <button
+            className="addingToBasketM addingToBasket"
+            onClick={handleAddToCart}
+          >
+            Додати в кошик
+          </button>
           <h3 className="nutritional-value">Харчова цінність</h3>
           <section className="container">
             <div className="tabs">

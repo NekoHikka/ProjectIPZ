@@ -3,12 +3,10 @@ import { useCart } from "../utils/CartContext";
 const Basket = () => {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
 
-  const deliveryFee = 50;
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const total = subtotal + deliveryFee;
 
   if (cartItems.length === 0) {
     return (
@@ -66,18 +64,11 @@ const Basket = () => {
       ))}
 
       <hr />
-      <div className="delivery-block">
-        <p className="amount">Доставка</p>
-        <p className="total-one-pos">
-          +<span className="valute-basket">₴</span>
-          {deliveryFee}
-        </p>
-      </div>
       <div className="total-block delivery-block">
         <p className="total-price">Загалом</p>
         <p className="total-price-amount">
           <span className="valute-basket">₴</span>
-          {total}
+          {subtotal}
         </p>
       </div>
 

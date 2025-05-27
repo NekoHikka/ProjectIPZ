@@ -119,6 +119,7 @@
 .container {
   width: 390px;
   border-radius: 6px;
+  margin-bottom: 20px;
 }
 
 .input-check {
@@ -244,4 +245,10 @@ input:checked ~ .tab-content {
   font-family: var(--Inter);
   font-size: 16px;
   color: var(--secondary-grey);
+}
+
+.addingToBasketM {
+  width: 200px;
+  color: var(--white-color);
+  font-size: 20px;
 }
