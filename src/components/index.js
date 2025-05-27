@@ -10,3 +10,6 @@ export { default as RestorantGrid } from "./RestorantGrid";
 export { default as PersonalCabinet } from "./PersonalCabinet";
 export { default as Basket } from "./Basket";
 export { default as ChangePhoto } from "./ChangePhoto";
+export { default as Header } from "./Header";
+export { default as HeaderLinks } from "./HeaderLinks";
+export { default as Reviews } from "./Reviews";
