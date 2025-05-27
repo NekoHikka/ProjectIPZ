@@ -1,5 +1,5 @@
 import logo from "../assets/images/logo.png";
-import defaultAvatar from "../assets/images/default-avatar.svg";
+import defaultAvatar from "../assets/images/default-avatar-reviews.png";
 import { NavLink } from "react-router-dom";
 import HeaderLinks from "./HeaderLinks";
 import { useProfileViewModel } from "../viewmodels/useProfile";
