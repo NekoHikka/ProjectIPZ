@@ -1,7 +1,12 @@
 [
     {
+        "username": "AdminForDeliv",
+        "location": null,
+        "profile_image": "/media/images/default.jpg"
+    },
+    {
         "username": "steve",
         "location": null,
-        "profile_image": "/media/users_profile_photo/133846618201653611.jpg"
+        "profile_image": "/media/images/default.jpg"
     }
 ]

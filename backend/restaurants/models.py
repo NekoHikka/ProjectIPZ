@@ -26,7 +26,7 @@ class Menu(models.Model):
         return self.name
 
 class MenuItem(models.Model):
-    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    menu = models.ManyToManyField(Menu, blank=True)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
