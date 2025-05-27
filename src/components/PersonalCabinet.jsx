@@ -1,5 +1,5 @@
 import notifiction from "../assets/images/notification.svg";
-import defaultAvatar from "../assets/images/default-avatar.svg";
+import defaultAvatar from "../assets/images/default-avatar-reviews.svg";
 import location from "../assets/images/location.svg";
 import { useProfileViewModel } from "../viewmodels/useProfile";
 import ChangePhoto from "../components/ChangePhoto";
