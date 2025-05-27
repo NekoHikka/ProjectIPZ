@@ -1,17 +1,33 @@
-import defaultAvatar from "../assets/images/default-avatar.svg";
+import defaultAvatar from "../assets/images/default-avatar-reviews.png";
 import star from "../assets/images/star.svg";
+
 const Review = () => {
   return (
     <div className="review-block">
-      <img src={defaultAvatar} alt="default avatar" className="review-avatar" />
-      <div>
-        <h1>В. Зеленський</h1>
-        <div className="stars">
-          {[...Array(5)].map((_, i) => (
-            <img key={i} src={star} alt="rating" className="star-icon" />
-          ))}
+      <div className="review-avatar-container">
+        <img
+          src={defaultAvatar}
+          alt="default avatar"
+          className="review-avatar"
+        />
+      </div>
+
+      <div className="review-content">
+        <div className="name-and-rating-block">
+          <h1>Анонім</h1>
+          <div className="starsReview">
+            {[...Array(5)].map((_, i) => (
+              <img
+                key={i}
+                src={star}
+                alt="rating"
+                className="star-icon-review"
+              />
+            ))}
+          </div>
         </div>
-        <p>Потужно!</p>
+
+        <p className="review-text">Потужно!</p>
       </div>
     </div>
   );
