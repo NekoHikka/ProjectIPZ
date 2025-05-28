@@ -1,8 +1,9 @@
-# orders/serializers.py
 from rest_framework import serializers
 from .models import Order, OrderItem
-from restaurants.models import MenuItem
+from restaurants.models import MenuItem, Vendor
+from api.serializers import MenuItemSerializer, VendorSerializer
 
+# OrderItem для створення замовлення (POST)
 class OrderItemSerializer(serializers.ModelSerializer):
     menu_item = serializers.PrimaryKeyRelatedField(queryset=MenuItem.objects.all())
 
@@ -10,6 +11,28 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = ['menu_item', 'quantity']
 
+# OrderItem для виводу замовлення (GET)
+class OrderItemReadSerializer(serializers.ModelSerializer):
+    menu_item = MenuItemSerializer(read_only=True)
+
+    class Meta:
+        model = OrderItem
+        fields = ['menu_item', 'quantity', 'price_at_order']
+
+# Детальне представлення замовлення (GET)
+class OrderDetailSerializer(serializers.ModelSerializer):
+    items = OrderItemReadSerializer(many=True, read_only=True)
+    vendor = VendorSerializer(read_only=True)
+    total_price = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    id = serializers.IntegerField(read_only=True)
+    created_at = serializers.DateTimeField(read_only=True)
+    order_code = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Order
+        fields = ['id', 'vendor', 'items', 'total_price', 'created_at', 'order_code']
+
+# Серіалізатор для створення замовлення (POST)
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, write_only=True)
     total_price = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
