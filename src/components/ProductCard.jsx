@@ -2,9 +2,38 @@ import star from "../assets/images/star.svg";
 import plus from "../assets/images/plus.png";
 import { useCart } from "../utils/CartContext";
 import { Link } from "react-router-dom";
+import { getMenuItem, getMenuById } from "../api/menu";
 
 const ProductCard = ({ id, name, price, image }) => {
   const { addToCart } = useCart();
+
+  const handleAdd = async () => {
+    try {
+      const itemRes = await getMenuItem(id);
+      const item = itemRes.data;
+
+      const menuId = Array.isArray(item.menu) ? item.menu[0] : item.menu;
+      if (!menuId) {
+        alert("Неможливо додати товар: не знайдено меню.");
+        return;
+      }
+
+      const menuRes = await getMenuById(menuId);
+      const vendorId = menuRes.data.vendor?.id;
+
+      if (!vendorId) {
+        alert("Неможливо додати товар: не знайдено заклад.");
+        return;
+      }
+
+      const newItem = { id, name, price, image, vendorId };
+      console.log("🛒 Додаємо до кошика з меню:", newItem);
+      addToCart(newItem);
+    } catch (err) {
+      console.error("Помилка при додаванні:", err);
+      alert("Не вдалося додати товар до кошика.");
+    }
+  };
 
   return (
     <div className="product" key={id}>
@@ -29,10 +58,7 @@ const ProductCard = ({ id, name, price, image }) => {
             <p className="price">{price}</p>
             <span className="valute">₴</span>
           </div>
-          <button
-            className="addingToBasket"
-            onClick={() => addToCart({ id, name, price, image })}
-          >
+          <button className="addingToBasket" onClick={handleAdd}>
             <img src={plus} alt="add" />
           </button>
         </div>
