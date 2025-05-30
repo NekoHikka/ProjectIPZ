@@ -6,10 +6,10 @@ import { links } from "../data/categories";
 
 const useMenuItem = (id) => {
   const [menuItem, setMenuItem] = useState(null);
-  const [restaurantName, setRestaurantName] = useState("");
   const [restaurantId, setRestaurantId] = useState(null);
-  const [menuName, setMenuName] = useState("");
+  const [restaurantName, setRestaurantName] = useState("");
   const [menuId, setMenuId] = useState(null);
+  const [menuName, setMenuName] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [categoryUrl, setCategoryUrl] = useState(null);
   const [error, setError] = useState(null);
@@ -20,6 +20,21 @@ const useMenuItem = (id) => {
         const itemRes = await getMenuItem(id);
         const item = itemRes.data;
         setMenuItem(item);
+
+        const menuIdToUse = Array.isArray(item.menu) ? item.menu[0] : item.menu;
+        if (!menuIdToUse) {
+          console.warn("❌ menuId порожній");
+          return;
+        }
+
+        const menuRes = await getMenuById(menuIdToUse);
+        setMenuId(menuRes.data.id);
+        setMenuName(menuRes.data.name);
+
+        if (menuRes.data.vendor?.id) {
+          setRestaurantId(menuRes.data.vendor.id);
+          setRestaurantName(menuRes.data.vendor.name);
+        }
 
         const categoriesRes = await getCategories();
         const matchedCategory = categoriesRes.data.find(
@@ -32,14 +47,6 @@ const useMenuItem = (id) => {
             setCategoryUrl(link.url);
           }
         }
-
-        const menuRes = await getMenuById(item.menu);
-        setMenuName(menuRes.data.name);
-        setMenuId(menuRes.data.id);
-
-        const restRes = await getRestaurantById(menuRes.data.vendor.id);
-        setRestaurantName(restRes.data.name);
-        setRestaurantId(restRes.data.id);
       } catch (err) {
         setError(err);
       }
@@ -50,10 +57,10 @@ const useMenuItem = (id) => {
 
   return {
     menuItem,
-    restaurantName,
     restaurantId,
-    menuName,
+    restaurantName,
     menuId,
+    menuName,
     categoryName,
     categoryUrl,
     error,
