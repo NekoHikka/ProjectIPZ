@@ -230,7 +230,6 @@ input:checked ~ .tab-content {
 }
 
 .item-description-list {
-  width: 779px;
   height: 48px;
   display: flex;
   flex-wrap: wrap;
