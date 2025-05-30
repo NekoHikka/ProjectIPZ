@@ -8,7 +8,7 @@ const MenuItem = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { id } = useParams();
-  const { menuItem, error } = useMenuItem(id);
+  const { menuItem, error, restaurantId } = useMenuItem(id);
 
   if (error) return <div>Помилка: {error.message}</div>;
   if (!menuItem) return <div>Завантаження...</div>;
@@ -19,6 +19,7 @@ const MenuItem = () => {
       name: menuItem.name,
       price: menuItem.price,
       image: menuItem.image,
+      vendorId: restaurantId,
     });
     alert("Додано до кошика!");
     navigate("/menu");
