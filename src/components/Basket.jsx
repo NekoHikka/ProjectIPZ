@@ -1,12 +1,51 @@
 import { useCart } from "../utils/CartContext";
-
+import { createOrder } from "../api/orders";
+import { useParams, useNavigate } from "react-router-dom";
 const Basket = () => {
-  const { cartItems, removeFromCart, updateQuantity } = useCart();
+  const navigate = useNavigate();
+  const { cartItems, removeFromCart, updateQuantity, clearCart } = useCart();
 
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+  const handleOrder = async () => {
+    const token = localStorage.getItem("access");
+    if (!token) {
+      alert("Ви не авторизовані");
+      return;
+    }
+
+    if (cartItems.length === 0) {
+      alert("Кошик порожній");
+      return;
+    }
+
+    const uniqueVendors = new Set(cartItems.map((item) => item.vendorId));
+    if (uniqueVendors.size > 1) {
+      alert(
+        "У кошику товари з різних ресторанів. Оформлювати замовлення можна лише з одного."
+      );
+      return;
+    }
+
+    const vendorId = cartItems[0].vendorId;
+    const items = cartItems.map((item) => ({
+      menu_item: item.id,
+      quantity: item.quantity,
+    }));
+
+    try {
+      await createOrder({ vendor: vendorId, items }, token);
+      alert("Замовлення успішно створено!");
+      clearCart();
+      navigate("/orders");
+    } catch (err) {
+      console.error("Помилка при створенні замовлення:", err);
+      alert("Не вдалося створити замовлення");
+    }
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -29,15 +68,14 @@ const Basket = () => {
             onError={(e) => {
               e.target.onerror = null;
               e.target.style.opacity = "0.7";
-              console.log(`Failed to load image for ${item.name}`);
             }}
           />
           <div className="basket-item-info">
             <p className="item-title">{item.name}</p>
             <p className="amount">x{item.quantity}</p>
             <p className="total-one-pos">
-              +<span className="valute-basket">₴</span>
-              {item.quantity * item.price}{" "}
+              <span className="valute-basket">₴</span>
+              {item.quantity * item.price}
             </p>
             <div className="item-actions">
               <button
@@ -72,7 +110,9 @@ const Basket = () => {
         </p>
       </div>
 
-      <button className="orderBtn">Оплатити</button>
+      <button className="orderBtn" onClick={handleOrder}>
+        Оплатити
+      </button>
     </div>
   );
 };
