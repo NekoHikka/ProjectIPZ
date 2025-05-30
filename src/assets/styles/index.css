@@ -11,6 +11,7 @@
 @import "./basket.css";
 @import "./reviews.css";
 @import "./header.css";
+@import "./orders.css";
 * {
   margin: 0;
   padding: 0;
